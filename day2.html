@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <input type="text" id="num" placeholder="Enter the num">
+    <button onclick="onEnter()">Enter</button>
+    <span id="arr1"></span>
+
+    <script>
+        function onEnter() {
+            const num = document.getElementById("num");
+            const arr1 = document.getElementById("arr1");
+
+            console.log(multiplesOfNo(num.value))
+            arr1.innerHTML = multiplesOfNo(num.value);
+        }
+
+        function changeUpper(word) {
+            return word.toUpperCase();
+        };
+        console.log(changeUpper("hello"));
+        function product(x, y) {
+            return x * y;
+        }
+        console.log(product(3, 4));
+        const arr = [2, 3, 34, 4, 3];
+        function addArr(items) {
+            let sum = 0;
+
+            for (let i = 0; i < items.length; i++) {
+                sum += items[i]
+
+            }
+            console.log(sum);
+        }
+        addArr(arr);
+        function multiplesOfNo(num) {
+            let arr = []
+            for (let i = 1; i < 6; i++) {
+                arr.push(num * i);
+            }
+            return arr;
+        }
+        console.log(multiplesOfNo(6));
+
+        const rect = {
+            len: 12,
+            br: 20
+        }
+        function findAreaPerimeter(obj) {
+            let area = obj.len * obj.br;
+            let peri = 2 * (obj.len + obj.br)
+            return { area, peri };
+        }
+        console.log(findAreaPerimeter(rect));
+
+    </script>
+
+</body>
+
+</html>
