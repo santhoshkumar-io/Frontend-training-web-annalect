@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <label for="len">Length</label>
+    <input type="text" name="" id="len" required>
+    <label for="br">Breadth</label>
+    <input type="text" name="" id="br" required>
+    <br>
+    <span id="message"></span>
+    <br>
+    <input type="radio" name="option" id="peri" onclick="getPeri()">
+    <label>Perimeter</label>
+    <input type="radio" name="option" id="area" onclick="getArea()">
+    <label for="area">Area</label>
+    <input type="radio" name="option" id="both" onclick="getBoth()">
+    <label for="both">Both</label>
+
+    <script>
+        function getArea() {
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+            const message = document.getElementById("message");
+            message.innerHTML = "Area is " + findAreaPerimeter(obj).area;
+        }
+        function getPeri() {
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+
+            const message = document.getElementById("message");
+            message.innerHTML = "Perimeter is " + findAreaPerimeter(obj).peri;
+        }
+        const area = document.getElementById("area");
+        const peri = document.getElementById("peri");
+        function findAreaPerimeter(obj) {
+            let area = obj.len * obj.br;
+            let peri = 2 * (obj.len + obj.br)
+            return { area, peri };
+        }
+        function getBoth() {
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+            const message = document.getElementById("message");
+            message.innerHTML = "Area is " + findAreaPerimeter(obj).area + " Perimeter is " + findAreaPerimeter(obj).peri;
+        }
+    </script>
+</body>
+
+</html>

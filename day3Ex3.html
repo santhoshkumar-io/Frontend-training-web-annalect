@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <label for="len">Length</label>
+    <input type="number" name="" id="len" required min="0"><br>
+    <label for="br">Breadth</label>
+    <input type="range" name="" id="br" required onchange="handleChange()"><span id="br-val"></span> <br>
+    <span id="message"></span>
+    <br>
+    <input type="checkbox" name="option" id="peri">
+    <label>Perimeter</label>
+    <input type="checkbox" name="option" id="area">
+    <label for="area">Area</label>
+    <input type="checkbox" name="option" id="both">
+    <label for="both">Both</label><br>
+    <button onclick="handleClick()">Give Answer</button>
+    <script>
+        function handleChange() {
+            const brVal = document.getElementById("br-val");
+            const br = document.getElementById("br");
+            brVal.innerHTML = br.value
+        }
+        function handleClick() {
+            const areaCheck = document.getElementById("area");
+            const periCheck = document.getElementById("peri");
+            const bothCheck = document.getElementById("both");
+            const message = document.getElementById("message");
+            console.log(periCheck.checked)
+            if (bothCheck.checked == true || (areaCheck.checked == true && periCheck.checked == true)) {
+                getBoth();
+            } else if (periCheck.checked == true) {
+                getPeri();
+            }
+            else if (areaCheck.checked == true) {
+                getArea();
+            } else {
+                message.innerHTML = "Please check any boxes to get an answer!"
+            }
+        }
+        function getArea() {
+
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+            const message = document.getElementById("message");
+            message.innerHTML = "Area is " + findAreaPerimeter(obj).area;
+        }
+        function getPeri() {
+            const currentElement = document.getElementById("area")
+
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+
+            const message = document.getElementById("message");
+            message.innerHTML = "Perimeter is " + findAreaPerimeter(obj).peri;
+        }
+        const area = document.getElementById("area");
+        const peri = document.getElementById("peri");
+        function findAreaPerimeter(obj) {
+
+            let area = Number(obj.len) * Number(obj.br);
+            let peri = 2 * (Number(obj.len) + Number(obj.br))
+            return { area, peri };
+        }
+        function getBoth() {
+            const len = document.getElementById("len");
+            const br = document.getElementById("br");
+            const obj = {
+                len: len.value,
+                br: br.value
+            }
+            len.value = "";
+            br.value = "";
+            const message = document.getElementById("message");
+            message.innerHTML = "Area is " + findAreaPerimeter(obj).area + " Perimeter is " + findAreaPerimeter(obj).peri;
+        }
+    </script>
+</body>
+
+</html>
