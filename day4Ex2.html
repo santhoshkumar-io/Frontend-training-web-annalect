@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <label for="noOfMultiples"> Number of Multiples</label>
+    <input type="text" id="noOfMultiples" onchange="handleChange()">
+    <select id="num">
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
+
+    <button onclick="handleClick()" id="btn-result">Get result</button><br>
+    <p id="displayContent"></p>
+    <script>
+        function handleChange() {
+            const noOfMultiples = document.getElementById("noOfMultiples");
+            const num = document.getElementById("num");
+            const btnResult = document.getElementById("btn-result");
+            console.log(num);
+            console.log(noOfMultiples)
+            if (noOfMultiples.value == "0") {
+
+                num.disabled = true;
+                btnResult.disabled = true;
+                displayContent.innerHTML = `Zero cannot be a multiple of a number `;
+
+
+            } else {
+                num.disabled = false;
+                btnResult.disabled = false;
+
+            }
+        }
+        function handleClick() {
+            console.log("hi")
+            const noOfMultiples = document.getElementById("noOfMultiples");
+            const num = document.getElementById("num");
+            const displayContent = document.getElementById("displayContent");
+            const arr = [];
+
+            displayContent.innerHTML = `Multiples of ${num.value} for ${noOfMultiples.value} times  <br>`;
+            for (let i = 1; i <= noOfMultiples.value; i++) {
+                displayContent.innerHTML += `${num.value} X ${i} = ${i * num.value}<br>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

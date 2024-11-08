@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        function freaky(x) {
+            if (typeof (x) == 'string') {
+                return x.toUpperCase()
+            } else if (typeof (x) == 'number') {
+                return x * 2
+
+            } else return null
+        }
+        console.log(freaky(3))
+        console.log(freaky("hi"))
+        console.log(freaky([3, 2]));
+    </script>
+</body>
+
+</html>
