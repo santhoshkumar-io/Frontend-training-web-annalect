@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <script>
+        const products = [{
+            id: 1,
+            name: "Pen",
+            price: 500
+        },
+        {
+            id: 2,
+            name: "Pencil",
+            price: 500
+        },
+        {
+            id: 5,
+            name: "Papper",
+            price: 500
+        }
+        ]
+        const addProduct = (product) => {
+            if (!products.find((element => element.id == product.id))) {
+                products.push(product)
+                return true
+            }
+            return false;
+        }
+
+        const updateProduct = product => {
+            const existingProduct = products.find(element => element.id == product.id)
+            if (existingProduct) {
+                existingProduct.name = product.name;
+                existingProduct.price = product.price;
+
+                return true
+            }
+            return false
+        }
+
+        const viewProduct = product => {
+            return product
+        }
+        const addDiscount = discount => {
+            const dupProducts = products.map(element => {
+                const dupProduct = { ...element }
+                dupProduct.price = dupProduct.price - (dupProduct.price * discount) / 100;
+                return dupProduct;
+            })
+            return dupProducts
+        }
+        console.log(products)
+        console.log(addProduct({ id: 5, name: "watch", price: 800 }))
+        console.log(addProduct({ id: 44, name: "charger", price: 100 }))
+        console.log(viewProduct({ id: 46, name: "pepper spray", price: 50 }))
+        console.log(addDiscount(10))
+        console.log(products)
+
+    </script>
+</body>
+
+</html>

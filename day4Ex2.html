@@ -2,32 +2,49 @@
 <html>
 
 <head>
+    <title>Multiples of Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
+        input,
+        button,
+        select {
+            margin: 5px;
+        }
+    </style>
 </head>
 
 <body>
     <label for="noOfMultiples"> Number of Multiples</label>
-    <input type="text" id="noOfMultiples" onchange="handleChange()">
+    <input type="number" id="noOfMultiples" required>
     <select id="num">
         <option>2</option>
         <option>3</option>
         <option>4</option>
     </select>
 
-    <button onclick="handleClick()" id="btn-result">Get result</button><br>
+    <button id="btn-result">Get result</button><br>
     <p id="displayContent"></p>
     <script>
+        //Changed impplementing on click and on change in tradisional method
+        document.getElementById('btn-result').addEventListener('click', handleClick);
+        document.getElementById('noOfMultiples').addEventListener('change', handleChange);
+
         function handleChange() {
             const noOfMultiples = document.getElementById("noOfMultiples");
             const num = document.getElementById("num");
             const btnResult = document.getElementById("btn-result");
             console.log(num);
             console.log(noOfMultiples)
-            if (noOfMultiples.value == "0") {
-
+            //Added disable for empty input
+            if (noOfMultiples.value == "0" && noOfMultiples == '') {
+                //Changed inneHTML to textContent
                 num.disabled = true;
                 btnResult.disabled = true;
-                displayContent.innerHTML = `Zero cannot be a multiple of a number `;
+                displayContent.textContent = `Zero cannot be a multiple of a number `;
 
 
             } else {

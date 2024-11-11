@@ -2,21 +2,24 @@
 <html>
 
 <head>
+    <title>Multiples of Number</title>
+    <meta charset="UTF-8">
 
 </head>
 
 <body>
-    <input type="text" id="num" placeholder="Enter the num">
-    <button onclick="onEnter()">Enter</button>
+    <input type="number" id="num" placeholder="Enter the num" required>
+    <button>Enter</button>
     <span id="arr1"></span>
 
     <script>
+        document.querySelector('button').addEventListener('click', onEnter);
+
         function onEnter() {
             const num = document.getElementById("num");
             const arr1 = document.getElementById("arr1");
-
             console.log(multiplesOfNo(num.value))
-            arr1.innerHTML = multiplesOfNo(num.value);
+            arr1.textContent = multiplesOfNo(num.value);
         }
 
         function changeUpper(word) {
