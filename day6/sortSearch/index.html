@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Products Inventory Controller App</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <h1>Products Inventory Controller </h1>
+    <label for="searchField">Criteria</label>
+    <input type="text" id="search-field">
+    <br>
+    <input type="radio" name="criteria" id="category-search">
+    <label>Category</label>
+    <input type="radio" name="criteria" id="price-search">
+    <label>Price</label>
+    <input type="radio" name="criteria" id="name-search">
+    <label>Name</label>
+    <input type="radio" name="criteria" id="quantity-search">
+    <label>Quantity</label><br>
+    <button id="search-btn">Search</button>
+    <ul id="productList"></ul>
+    <select name="sortby" id="sort-select">
+        <option value="search-default">--Sort by--</option>
+        <option value="price">Price</option>
+        <option value="date">Date Added</option>
+        <option value="quantity">Quantity</option>
+    </select>
+    <button id="sort-btn">Sort</button>
+    <script src="./index.js">
+    </script>
+</body>
+
+</html>
