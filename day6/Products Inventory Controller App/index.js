@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         displayContent('No product Found');
       }
+      document.querySelector('#search-field').value = '';
     } else {
       displayContent('Search field is empty');
     }
@@ -172,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       displayContent('Select any sort');
     }
-    val = 'search-default';
+    document.getElementById('sort-select').value = 'select-default';
   });
   function displayContent(arr) {
     const list = document.getElementById('productList');
@@ -186,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       listHead.textContent = 'Name Price Quantity Category Date';
       list.appendChild(listHead);
       if (Array.isArray(arr)) {
+        console.log(Array.isArray(arr));
         arr.forEach(product => {
           const date = product.dateAdded.toISOString().split('T')[0];
           const listItem = document.createElement('li');
@@ -193,9 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
           list.appendChild(listItem);
         });
       } else {
+        console.log(Array.isArray(arr));
         const date = arr.dateAdded.toISOString().split('T')[0];
         const listItem = document.createElement('li');
         listItem.textContent = `${arr.name} ${arr.price} ${arr.quantity} ${arr.category} ${date}`;
+        list.appendChild(listItem);
       }
     }
   }
