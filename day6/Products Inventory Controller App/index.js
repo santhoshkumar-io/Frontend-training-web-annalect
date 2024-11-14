@@ -89,7 +89,7 @@ function sortByDate() {
   return sortedByDateAdded;
 }
 
-// 4. Search: Find all products in a specific category (e.g., 'Tools')
+// 4. Search: Find all products in a specific category (  e.g., 'Tools')
 function searchByCategory(val) {
   const toolsCategory = products.filter(product => product.category === val);
   return toolsCategory;
@@ -131,7 +131,36 @@ function searchByQuantity(val) {
 // console.log(searchByName());
 // console.log(searchByQuantity());
 
+
 document.addEventListener('DOMContentLoaded', () => {
+  function displayContent(arr) {
+  const list = document.getElementById('productList');
+  list.innerHTML = '';
+  if (typeof arr == 'string') {
+    const listHead = document.createElement('h3');
+    listHead.textContent = arr;
+    list.appendChild(listHead);
+  } else {
+    const listHead = document.createElement('h5');
+    listHead.textContent = 'Name Price Quantity Category Date';
+    list.appendChild(listHead);
+    if (Array.isArray(arr)) {
+      console.log(Array.isArray(arr));
+      arr.forEach(product => {
+        const date = product.dateAdded.toISOString().split('T')[0];
+        const listItem = document.createElement('li');
+        listItem.textContent = ` ${product.name} ${product.price} ${product.quantity} ${product.category} ${date}`;
+        list.appendChild(listItem);
+      });
+    } else {
+      console.log(Array.isArray(arr));
+      const date = arr.dateAdded.toISOString().split('T')[0];
+      const listItem = document.createElement('li');
+      listItem.textContent = `${arr.name} ${arr.price} ${arr.quantity} ${arr.category} ${date}`;
+      list.appendChild(listItem);
+    }
+  }
+}
   document.getElementById('search-btn').addEventListener('click', () => {
     let val = document.getElementById('search-field').value;
     if (val != '') {
@@ -157,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         displayContent('No product Found');
       }
-      document.querySelector('#search-field').value = '';
+      document.getElementById('search-field').value = '';
     } else {
       displayContent('Search field is empty');
     }
@@ -175,32 +204,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('sort-select').value = 'select-default';
   });
-  function displayContent(arr) {
-    const list = document.getElementById('productList');
-    list.innerHTML = '';
-    if (typeof arr == 'string') {
-      const listHead = document.createElement('h3');
-      listHead.textContent = arr;
-      list.appendChild(listHead);
-    } else {
-      const listHead = document.createElement('h5');
-      listHead.textContent = 'Name Price Quantity Category Date';
-      list.appendChild(listHead);
-      if (Array.isArray(arr)) {
-        console.log(Array.isArray(arr));
-        arr.forEach(product => {
-          const date = product.dateAdded.toISOString().split('T')[0];
-          const listItem = document.createElement('li');
-          listItem.textContent = ` ${product.name} ${product.price} ${product.quantity} ${product.category} ${date}`;
-          list.appendChild(listItem);
-        });
-      } else {
-        console.log(Array.isArray(arr));
-        const date = arr.dateAdded.toISOString().split('T')[0];
-        const listItem = document.createElement('li');
-        listItem.textContent = `${arr.name} ${arr.price} ${arr.quantity} ${arr.category} ${date}`;
-        list.appendChild(listItem);
-      }
-    }
-  }
 });
