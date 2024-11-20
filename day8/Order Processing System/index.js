@@ -80,7 +80,7 @@ function addProduct(listOfProducts) {
   const mobile = document.querySelector('#mobile-number').value;
   const regex = new RegExp('^[0-9]{10}$');
   console.log(selectedId);
-  if (name !== '' && regex.test(mobile) && selectedId != 'NaN') {
+  if (name !== '' && regex.test(mobile)) {
     const selectedProduct = products.find(product => {
       return product.id === selectedId;
     });
@@ -106,7 +106,6 @@ function addOrder(listOfProducts) {
     currentOrder.listOfProducts
   )}`;
   orderList.appendChild(orderListItem);
-  //Add total price to the order list
   orders.push(currentOrder);
   console.log(orders);
   document.querySelector('#customer-name').value = '';
