@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Numbers</title>
+  <style>
+    header {
+      background-color: #2c3e50;
+      /* Dark background */
+      color: white;
+      /* White text */
+      text-align: center;
+      /* Center text */
+      padding: 20px;
+      /* Padding for header */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0px;
+    }
+
+
+
+    footer {
+      text-align: center;
+      /* Center text */
+      padding: 10px;
+      /* Padding for footer */
+      background-color: #2c3e50;
+      /* Dark background */
+      color: white;
+      /* White text */
+      position: relative;
+      /* Position footer */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Manufacturing Company Dashboard</h1>
+  </header>
+
+  <footer>
+    © 2024 Manufacturing Company. All rights reserved.
+  </footer>
+
+  <script>
+    window.onload = function () {
+      // Check if the user is logged in
+      if (!sessionStorage.getItem("loggedIn")) {
+        document.getElementById("loginError").innerText =
+          "You must be logged in to perform this action.";
+        setTimeout(function () {
+          window.location.href = "login.html"; // Redirect if not logged in
+        }, 2000);
+      }
+    };
+
+    function addNumbers() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const resultElement = document.getElementById("result");
+
+      if (isNaN(num1) || isNaN(num2)) {
+        resultElement.style = "color:red"
+        resultElement.innerText = "Please enter valid numbers.";
+      } else {
+        resultElement.style = "color:black"
+        const sum = num1 + num2;
+        resultElement.innerText = "Result: " + sum;
+      }
+    }
+  </script>
+</body>
+
+</html>

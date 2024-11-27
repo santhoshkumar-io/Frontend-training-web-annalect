@@ -1,0 +1,224 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1,
+h3 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+input,
+select,
+button {
+  font-size: 1rem;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+  border-color: #5a9;
+}
+
+input[type='text'],
+select {
+  width: calc(100% - 22px);
+}
+
+button {
+  background-color: #5a9;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #487;
+}
+
+/* Layout for the entire page */
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left-container,
+.right-container {
+  width: 48%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-container {
+  background-color: #eef6fb;
+}
+
+.right-container {
+  background-color: #fff5e6;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+h4 {
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+/* Product Selection Section */
+#product-selector {
+  width: calc(100% - 22px);
+  margin-bottom: 15px;
+}
+
+#product-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#product-list li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#total-value {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Order List Section */
+#order-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#order-list li {
+  background-color: #e7e7e7;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+button.cancel-order {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+button.cancel-order:hover {
+  background-color: #d32f2f;
+}
+
+/* Summary Section for Orders */
+#order-summary {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#order-summary li {
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+.order-summary {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.order-summary span {
+  font-weight: bold;
+}
+
+.order-summary a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.order-summary a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .left-container,
+  .right-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  button.cancel-order {
+    font-size: 0.9rem;
+  }
+
+  #product-list li {
+    font-size: 0.9rem;
+  }
+
+  #order-list li {
+    font-size: 0.9rem;
+  }
+
+  .order-summary li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  input,
+  select,
+  button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+  }
+}

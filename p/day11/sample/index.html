@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>page</title>
+</head>
+
+<body>
+    <label for="name">name</label>
+    <input type="number" id="name">
+    <button id="add-name">add</button>
+    <p id="output"></p>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("page loaded!");
+        let logicObject = new Logic();
+        document.querySelector('#add-name').addEventListener('click', () => {
+            console.log("Add has been clicked");
+            const input = document.querySelector('#name').value;
+            const result = logicObject.doubleIt(input);
+            const output = document.querySelector('#output');
+            output.textContent = result;
+        });
+
+    });
+    class Logic {
+        doubleIt(inputNum) {
+            return inputNum * inputNum;
+        }
+    }
+</script>
+
+</html>
