@@ -131,36 +131,69 @@ function searchByQuantity(val) {
 // console.log(searchByName());
 // console.log(searchByQuantity());
 
-
 document.addEventListener('DOMContentLoaded', () => {
   function displayContent(arr) {
-  const list = document.getElementById('productList');
-  list.innerHTML = '';
-  if (typeof arr == 'string') {
-    const listHead = document.createElement('h3');
-    listHead.textContent = arr;
-    list.appendChild(listHead);
-  } else {
-    const listHead = document.createElement('h5');
-    listHead.textContent = 'Name Price Quantity Category Date';
-    list.appendChild(listHead);
-    if (Array.isArray(arr)) {
-      console.log(Array.isArray(arr));
-      arr.forEach(product => {
-        const date = product.dateAdded.toISOString().split('T')[0];
-        const listItem = document.createElement('li');
-        listItem.textContent = ` ${product.name} ${product.price} ${product.quantity} ${product.category} ${date}`;
-        list.appendChild(listItem);
-      });
+    const list = document.getElementById('productList');
+    list.innerHTML = ''; // Clear existing content
+
+    if (typeof arr === 'string') {
+      const listHead = document.createElement('h3');
+      listHead.textContent = arr;
+      list.appendChild(listHead);
     } else {
-      console.log(Array.isArray(arr));
-      const date = arr.dateAdded.toISOString().split('T')[0];
-      const listItem = document.createElement('li');
-      listItem.textContent = `${arr.name} ${arr.price} ${arr.quantity} ${arr.category} ${date}`;
-      list.appendChild(listItem);
+      //header
+      const headerRow = document.createElement('div');
+      headerRow.className = 'table-header';
+      const headers = ['Name', 'Price', 'Quantity', 'Category', 'Date'];
+      headers.forEach(header => {
+        const headerCell = document.createElement('div');
+        headerCell.className = 'table-cell';
+        headerCell.textContent = header;
+        headerRow.appendChild(headerCell);
+      });
+      list.appendChild(headerRow);
+
+      //rows
+      if (Array.isArray(arr)) {
+        arr.forEach(product => {
+          const date = product.dateAdded.toISOString().split('T')[0];
+          const row = document.createElement('div');
+          row.className = 'table-row';
+
+          const values = [
+            product.name,
+            product.price,
+            product.quantity,
+            product.category,
+            date,
+          ];
+          values.forEach(value => {
+            const cell = document.createElement('div');
+            cell.className = 'table-cell';
+            cell.textContent = value;
+            row.appendChild(cell);
+          });
+
+          list.appendChild(row);
+        });
+      } else {
+        const date = arr.dateAdded.toISOString().split('T')[0];
+        const row = document.createElement('div');
+        row.className = 'table-row';
+
+        const values = [arr.name, arr.price, arr.quantity, arr.category, date];
+        values.forEach(value => {
+          const cell = document.createElement('div');
+          cell.className = 'table-cell';
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+
+        list.appendChild(row);
+      }
     }
   }
-}
+
   document.getElementById('search-btn').addEventListener('click', () => {
     let val = document.getElementById('search-field').value;
     if (val != '') {
