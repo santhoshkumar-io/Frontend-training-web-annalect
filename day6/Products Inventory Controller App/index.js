@@ -142,11 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
       list.appendChild(listHead);
     } else {
       //header
-      const headerRow = document.createElement('div');
+      const headerRow = document.createElement('tr');
       headerRow.className = 'table-header';
       const headers = ['Name', 'Price', 'Quantity', 'Category', 'Date'];
       headers.forEach(header => {
-        const headerCell = document.createElement('div');
+        const headerCell = document.createElement('th');
         headerCell.className = 'table-cell';
         headerCell.textContent = header;
         headerRow.appendChild(headerCell);
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Array.isArray(arr)) {
         arr.forEach(product => {
           const date = product.dateAdded.toISOString().split('T')[0];
-          const row = document.createElement('div');
+          const row = document.createElement('tr');
           row.className = 'table-row';
 
           const values = [
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             date,
           ];
           values.forEach(value => {
-            const cell = document.createElement('div');
+            const cell = document.createElement('td');
             cell.className = 'table-cell';
             cell.textContent = value;
             row.appendChild(cell);
@@ -178,12 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } else {
         const date = arr.dateAdded.toISOString().split('T')[0];
-        const row = document.createElement('div');
+        const row = document.createElement('tr');
         row.className = 'table-row';
 
         const values = [arr.name, arr.price, arr.quantity, arr.category, date];
         values.forEach(value => {
-          const cell = document.createElement('div');
+          const cell = document.createElement('td');
           cell.className = 'table-cell';
           cell.textContent = value;
           row.appendChild(cell);
