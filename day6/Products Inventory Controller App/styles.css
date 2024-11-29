@@ -126,10 +126,7 @@ button:hover {
 
 #productList .table-cell {
   padding: 8px 15px;
-  min-width: 7-px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 80px;
   text-align: left;
 }
 
