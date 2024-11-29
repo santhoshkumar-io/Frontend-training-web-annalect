@@ -13,36 +13,42 @@
 
 <body>
     <h1>Products Inventory Controller </h1>
-    <div class="headerContainer">
-        <section class="searchSection">
-            <div class="searchBar">
-                <input type="text" placeholder="Criteria" id="search-field">
-                <div class="radios">
-                    <input type="radio" name="criteria" id="category-search">
-                    <label>Category</label>
-                    <input type="radio" name="criteria" id="price-search">
-                    <label>Price</label>
-                    <input type="radio" name="criteria" id="name-search">
-                    <label>Name</label>
-                    <input type="radio" name="criteria" id="quantity-search">
-                    <label>Quantity</label>
+    <div class="container">
+        <div class="headerContainer">
+            <section class="searchSection">
+                <div class="searchBar">
+                    <input type="text" placeholder="Criteria" id="search-field">
+                    <div class="radios">
+                        <input type="radio" name="criteria" id="category-search">
+                        <label>Category</label>
+                        <input type="radio" name="criteria" id="price-search">
+                        <label>Price</label>
+                        <input type="radio" name="criteria" id="name-search">
+                        <label>Name</label>
+                        <input type="radio" name="criteria" id="quantity-search">
+                        <label>Quantity</label>
+                    </div>
+    
                 </div>
-
-            </div>
-            <button id="search-btn">Search</button>
-        </section>
-        <section class="sortSection">
-            <select name="sortby" id="sort-select">
-                <option value="select-default">--Sort by--</option>
-                <option value="price">Price</option>
-                <option value="date">Date Added</option>
-                <option value="quantity">Quantity</option>
-            </select>
-            <button id="sort-btn">Sort</button>
-        </section>
+                <button id="search-btn">Search</button>
+            </section>
+            <section class="sortSection">
+                <select name="sortby" id="sort-select">
+                    <option value="select-default">--Sort by--</option>
+                    <option value="price">Price</option>
+                    <option value="date">Date Added</option>
+                    <option value="quantity">Quantity</option>
+                </select>
+                <button id="sort-btn">Sort</button>
+            </section>
+        </div>
+        <div class="scroll-table">
+            <table id="productList">
+            </table>
+        </div>
     </div>
-    <table id="productList">
-    </table>
+    
+
 
     <script src="./index.js">
     </script>

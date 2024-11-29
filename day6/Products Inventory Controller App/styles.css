@@ -2,14 +2,18 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding: 20px;
   color: #333;
 }
 
 h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  color: #333;
+  background-color: #ffffff6c;
+  backdrop-filter: blur(3px);
+  padding: 0.67em;
+  margin: 0;
+  margin-bottom: 15px;
+  z-index: 100;
 }
 
 .headerContainer {
@@ -17,8 +21,10 @@ h1 {
   justify-content: space-between;
   margin-bottom: 20px;
 }
+.container{
+  padding: 0 20px;
 
-.searchSection {
+}.searchSection {
   display: flex;
   align-items: center;
 }
@@ -130,12 +136,20 @@ button:hover {
   text-align: left;
 }
 
-#productList .table-header .table-cell {
+.table-header {
+  position: sticky;
+  top: 0;
+}
+.table-header .table-cell {
   font-size: 16px;
   color: #ffff;
 }
 
-#productList .table-row .table-cell {
+.table-row .table-cell {
   font-size: 14px;
   color: #333;
+}
+.scroll-table {
+  height: 400px;
+  overflow-y: auto;
 }
