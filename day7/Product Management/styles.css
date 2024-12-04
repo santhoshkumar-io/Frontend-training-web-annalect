@@ -80,14 +80,12 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Button Group */
 .button-group {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-/* Table Styling */
 .table-section {
   margin-left: 120px;
 }
@@ -117,7 +115,6 @@ tr:hover {
   background-color: #c4e3f865;
 }
 
-/* Actions Section */
 .actions {
   display: flex;
   gap: 20px;
@@ -134,7 +131,6 @@ tr:hover {
   display: none;
 }
 
-/* Warning Message Styles */
 .warning-message {
   width: 100%;
   max-width: 400px;
@@ -171,17 +167,15 @@ tr:hover {
   font-size: 12px;
   padding: 8px 14px;
 }
-/* Apply Discount Section Styling */
 .discount-input {
-  width: 200px; /* Reduced width */
+  width: 200px; 
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px; /* Space before the button */
+  margin-bottom: 10px; 
 }
 
-/* Base styling for messages */
 .warning-message {
   margin-top: 10px;
   padding: 10px;
@@ -190,14 +184,12 @@ tr:hover {
   text-align: center;
 }
 
-/* Error message styling */
 .warning-message.error {
   background-color: #f8d7da;
   color: #842029;
   border: 1px solid #f5c6cb;
 }
 
-/* Success message styling */
 .warning-message.success {
   background-color: #d4edda;
   color: #155724;

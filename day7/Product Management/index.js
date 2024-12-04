@@ -31,27 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let isUpdating = false;
   let updatingProductId = null;
 
-  // Helper function to display error messages
   function showError(message) {
     warningMessage.textContent = message;
-    warningMessage.className = 'warning-message error'; // Apply error styling
+    warningMessage.className = 'warning-message error';
     warningMessage.style.display = 'block';
     setTimeout(() => {
       warningMessage.style.display = 'none';
     }, 3000);
   }
 
-  // Helper function to display success messages
   function showSuccess(message) {
     warningMessage.textContent = message;
-    warningMessage.className = 'warning-message success'; // Apply success styling
+    warningMessage.className = 'warning-message success';
     warningMessage.style.display = 'block';
     setTimeout(() => {
       warningMessage.style.display = 'none';
     }, 3000);
   }
 
-  // Render the products table
   function renderProductsTable() {
     productsTableBody.innerHTML = '';
     products.forEach(product => {
@@ -66,8 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       productsTableBody.appendChild(row);
     });
-
-    // Attach event listeners to update buttons
     document.querySelectorAll('.update-btn').forEach(button => {
       button.addEventListener('click', event => {
         const productId = parseInt(event.target.getAttribute('data-id'));
@@ -76,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Render the discounted products table
   function renderDiscountedTable() {
     discountedProductsTableBody.innerHTML = '';
     products.forEach(product => {
@@ -93,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Start updating a product
   function startUpdate(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -110,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addProductBtn.disabled = true;
   }
 
-  // Add a new product
   addProductBtn.addEventListener('click', () => {
     const id = parseInt(idInput.value);
     const name = nameInput.value.trim();
@@ -135,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showSuccess('Product added successfully!');
   });
 
-  // Update an existing product
   updateProductBtn.addEventListener('click', () => {
     const name = nameInput.value.trim();
     const price = parseFloat(priceInput.value);
@@ -150,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     product.name = name;
     product.price = price;
-    product.discountedPrice = null; // Reset discounted price
+    product.discountedPrice = null;
 
     renderProductsTable();
 
@@ -166,13 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
     showSuccess('Product updated successfully!');
   });
 
-  // View Products Button
   viewProductsBtn.addEventListener('click', () => {
     productsSection.style.display = 'block';
     renderProductsTable();
   });
 
-  // Apply Discount
   applyDiscountBtn.addEventListener('click', () => {
     const discount = parseFloat(discountInput.value);
 

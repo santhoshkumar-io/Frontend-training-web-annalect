@@ -132,25 +132,33 @@ function placeOrder() {
     );
     return;
   }
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const now = new Date();
+  const orderDate = new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(now);
+  const orderTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
-  // Generate new order and save to orders array
   const newOrder = {
     orderId: generateOrderNumber(),
     customerName,
     mobileNumber,
     items: [...cart],
     status: 'Pending',
-    date: new Date().toLocaleString(), // Add current date and time
-    totalPrice,
+    date: orderDate,
+    time: orderTime,
+    total: totalPrice,
   };
   console.log(orders);
   orders.push(newOrder);
 
-  // Save to localStorage
   localStorage.setItem('orders', JSON.stringify(orders));
 
-  // Clear cart and reset form
   cart = [];
   updateCart();
   showMessage('Order placed successfully!', 'success');
@@ -164,7 +172,6 @@ function showMessage(message, type = 'error') {
   messageContainer.classList.remove('hidden', 'success', 'error');
   messageContainer.classList.add(type, 'show');
 
-  // Hide the message after 3 seconds
   setTimeout(() => {
     messageContainer.classList.remove('show');
   }, 3000);

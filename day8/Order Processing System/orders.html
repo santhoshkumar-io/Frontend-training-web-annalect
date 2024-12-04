@@ -5,23 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./orders.css">
 </head>
 
 <body>
     <h1>Order Processing System</h1>
     <div class="container">
         <h2>Orders</h2>
-        <div id="orders-container" class="orders-container"></div>
-
-        <!-- Order Detail Tile -->
-        <div id="order-detail-tile" class="tile hidden">
-            <div class="tile-header">
-                <h3 id="order-number"></h3>
-                <button id="close-tile">X</button>
-            </div>
-            <div id="order-details"></div>
-            <button id="delete-order" class="btn-delete">Delete Order</button>
+        <div class="orders-wrap">
+            <div id="orders-container" class="orders-container"></div>
         </div>
     </div>
     <script src="./orders.js"></script>

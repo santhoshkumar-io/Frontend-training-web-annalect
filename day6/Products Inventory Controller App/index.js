@@ -1,4 +1,3 @@
-// Sample Array of Product objects
 const products = [
   {
     id: 1,
