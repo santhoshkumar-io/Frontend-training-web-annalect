@@ -7,21 +7,63 @@
 </head>
 
 <body>
-    <label for="customer-name">Customer Name</label>
-    <input type="text" id="customer-name" required><br>
-    <label for="mobile-number">Mobile Number</label>
-    <input type="text" id="mobile-number" required><br>
-    <select id="product-selector" required>
-        <option value="select-default"> -- Select product -- </option>
-    </select>
-    <button id="add-product">Add Product</button>
-    <ul id="product-list">
-    </ul>
-    <h3 id="total-value"></h3>
+    <h1>Order Processing System</h1>
+    <div class="container">
+        <div class="add-product-wrap">
+            <div class="left-content">
+                <form class="add-product">
+                    <label for="customer-name">Customer Name</label>
+                    <input type="text" id="customer-name" required>
+                    <label for="mobile-number">Mobile Number</label>
+                    <input type="text" id="mobile-number" required>
+                    <label for="product-selector">Select Product</label>
+                    <select id="product-selector" required>
+                        <option value="select-default">-- Select product --</option>
+                    </select>
+                    <button id="add-product">Add to Cart</button>
+                    <!-- Warning and Success Messages -->
+<div id="message-container" class="message-container hidden">
+    <p id="message-text"></p>
+  </div>
+  
+                </form>
+                <button id="view-orders">View Orders</button>
 
-    <button id="place-order"> Order </button>
-    <ul id="order-list">
-    </ul>
+            </div>
+
+
+            <div class="cart-container">
+                <h3>Cart Items</h3>
+                <div class="cart-table-wrapper">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items"></tbody>
+                    </table>
+                </div>
+                <div class="cart-total">
+                    <span>Sub Total: </span><span id="total-price">₹0</span>
+                </div>
+                <div class="order-buttons-wrap">
+                    <button id="cancel-order">Cancel Order</button>
+                    <button id="place-order">Place Order</button>
+                </div>
+            </div>
+        </div>
+        <ul id="order-list"></ul>
+    </div>
+
+    <!-- Modal -->
+    <div id="order-modal" class="modal hidden">
+        <p>Order Placed Successfully!</p>
+    </div>
+
     <script src="./index.js"></script>
 </body>
 

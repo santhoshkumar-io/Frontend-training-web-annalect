@@ -1,4 +1,5 @@
 'use strict';
+
 const products = [
   { id: 1, name: 'Phone', price: 2000 },
   { id: 2, name: 'E-Pen', price: 200 },
@@ -10,129 +11,227 @@ const products = [
   { id: 8, name: 'Keyboard', price: 200 },
   { id: 9, name: 'Toy', price: 100 },
 ];
-const orders = [
-  {
-    id: 100,
-    name: 'summer',
-    listOfProducts: [
-      { id: 1, name: 'Phone', price: 2000 },
-      { id: 2, name: 'Charger', price: 200 },
-    ],
-    totalAmount: 3000,
-  },
-];
+
+let cart = [];
+let orders = [];
+
 function createProductSelector() {
   const productSelect = document.querySelector('#product-selector');
-
   products.forEach(product => {
     const selectItem = document.createElement('option');
     selectItem.value = product.id;
-    selectItem.textContent = ` -----  ${product.name}  ---- `;
+    selectItem.textContent = `${product.name} - ₹${product.price}`;
     productSelect.appendChild(selectItem);
   });
-  return true;
 }
-function appendSelectedProducts(listOfProducts) {
-  const list = document.querySelector('#product-list');
-  list.innerHTML = '';
+function viewOrders() {
+  window.location.href = 'orders.html';
+}
+function generateOrderNumber() {
+  let orderId;
+  do {
+    orderId = Math.floor(100000 + Math.random() * 900000).toString();
+  } while (orders.some(order => order.orderId === orderId));
+  return orderId;
+}
+function updateCart() {
+  const cartItems = document.querySelector('#cart-items');
+  cartItems.innerHTML = '';
   let total = 0;
-
-  listOfProducts.forEach(product => {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${product.name} ${product.price} X ${product.quantity}`;
-    list.appendChild(listItem);
-    total += calcAmount(product.price, product.quantity);
-  });
-  appendtotal(total);
-  return listOfProducts;
-}
-function appendtotal(total) {
-  const totalValue = document.querySelector('#total-value');
-  totalValue.textContent = `The total is ${total}`;
-}
-function calcAmount(price, quantity) {
-  return price * quantity;
-}
-
-function calcTotal(listOfProducts) {
-  let total = 0;
-  listOfProducts.forEach(product => {
-    total += calcAmount(product.price, product.quantity);
-  });
-  return total;
-}
-
-function checkSameProduct(listOfProducts, selectedProduct, selectedId) {
-  const isSameProduct = listOfProducts.findIndex(product => {
-    return product.id === selectedId;
-  });
-  if (isSameProduct != -1) {
-    listOfProducts[isSameProduct].quantity += 1;
-    return appendSelectedProducts(listOfProducts);
+  if (cart.length === 0) {
+    enableFormFields(); // Re-enable fields when cart is empty
   } else {
-    listOfProducts.push(selectedProduct);
-    return appendSelectedProducts(listOfProducts);
-  }
-}
-function addProduct(listOfProducts) {
-  const selectedId = Number(document.querySelector('#product-selector').value);
-  const name = document.querySelector('#customer-name').value;
-  const mobile = document.querySelector('#mobile-number').value;
-  const regex = new RegExp('^[0-9]{10}$');
-  console.log(selectedId);
-  if (name !== '' && regex.test(mobile)) {
-    const selectedProduct = products.find(product => {
-      return product.id === selectedId;
+    cart.forEach(product => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${product.name}</td>
+        <td>
+          <div class="quantity-wrap">
+            <button class="quantity-control" data-id="${product.id}" data-action="decrease">-</button>
+            <span>${product.quantity}</span>
+            <button class="quantity-control" data-id="${product.id}" data-action="increase">+</button>
+          </div>
+        </td>
+        <td><strong>₹${product.price}</strong></td>
+        <td>
+          <button class="remove-product" data-id="${product.id}">Remove</button>
+        </td>`;
+      cartItems.appendChild(row);
+      total += product.price * product.quantity;
     });
-    return checkSameProduct(
-      listOfProducts,
-      { ...selectedProduct, quantity: 1 },
-      selectedId
-    );
+  }
+
+  document.querySelector(
+    '.cart-total span:last-child'
+  ).textContent = `₹${total}`;
+}
+
+function addToCart(productId) {
+  const selectedProduct = products.find(product => product.id === productId);
+
+  if (!selectedProduct) return;
+
+  const existingProduct = cart.find(product => product.id === productId);
+  if (existingProduct) {
+    if (existingProduct.quantity < 9) {
+      existingProduct.quantity++;
+    }
   } else {
-    console.log('Error');
+    cart.push({ ...selectedProduct, quantity: 1 });
+  }
+
+  updateCart();
+  disableFormFields();
+  showMessage('Product added to the cart!', 'success');
+}
+
+function modifyQuantity(productId, action) {
+  const product = cart.find(product => product.id === productId);
+  if (product) {
+    if (action === 'increase' && product.quantity < 9) {
+      product.quantity++;
+    } else if (action === 'decrease') {
+      product.quantity--;
+      if (product.quantity === 0) {
+        cart = cart.filter(item => item.id !== productId);
+      }
+    }
+    updateCart();
+  }
+
+  // Re-enable fields if cart is empty
+  if (cart.length === 0) {
+    enableFormFields();
+    showMessage(
+      'Cart is empty! You can now re-enter customer details.',
+      'error'
+    );
   }
 }
-function addOrder(listOfProducts) {
-  const name = document.querySelector('#customer-name').value;
-  const mobile = document.querySelector('#mobile-number').value;
-  const orderId = generateRandomSixDigitNumber();
-  const orderList = document.querySelector('#order-list');
-  const currentOrder = { id: orderId, name, mobile, listOfProducts };
-  const orderListItem = document.createElement('li');
-  orderListItem.textContent = `${currentOrder.id} ${currentOrder.name} ${
-    currentOrder.mobile
-  } ${formatProducts(currentOrder.listOfProducts)} total: ${calcTotal(
-    currentOrder.listOfProducts
-  )}`;
-  orderList.appendChild(orderListItem);
-  orders.push(currentOrder);
+
+function removeProduct(productId) {
+  cart = cart.filter(product => product.id !== productId);
+  updateCart();
+  if (cart.length === 0) {
+    enableFormFields();
+    showMessage(
+      'Cart is empty! You can now re-enter customer details.',
+      'error'
+    );
+  }
+}
+
+function placeOrder() {
+  const customerName = document.querySelector('#customer-name').value;
+  const mobileNumber = document.querySelector('#mobile-number').value;
+  console.log('hi');
+  if (!customerName || !mobileNumber || cart.length === 0) {
+    showMessage(
+      'Please fill in all details and add items to the cart!',
+      'error'
+    );
+    return;
+  }
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  // Generate new order and save to orders array
+  const newOrder = {
+    orderId: generateOrderNumber(),
+    customerName,
+    mobileNumber,
+    items: [...cart],
+    status: 'Pending',
+    date: new Date().toLocaleString(), // Add current date and time
+    totalPrice,
+  };
   console.log(orders);
+  orders.push(newOrder);
+
+  // Save to localStorage
+  localStorage.setItem('orders', JSON.stringify(orders));
+
+  // Clear cart and reset form
+  cart = [];
+  updateCart();
+  showMessage('Order placed successfully!', 'success');
+}
+
+function showMessage(message, type = 'error') {
+  const messageContainer = document.querySelector('#message-container');
+  const messageText = document.querySelector('#message-text');
+
+  messageText.textContent = message;
+  messageContainer.classList.remove('hidden', 'success', 'error');
+  messageContainer.classList.add(type, 'show');
+
+  // Hide the message after 3 seconds
+  setTimeout(() => {
+    messageContainer.classList.remove('show');
+  }, 3000);
+}
+
+function cancelOrder() {
+  cart = [];
+  updateCart();
+  enableFormFields();
+  showMessage('Order has been canceled.', 'error');
+}
+
+function disableFormFields() {
+  document.querySelector('#customer-name').disabled = true;
+  document.querySelector('#mobile-number').disabled = true;
+}
+
+function enableFormFields() {
+  document.querySelector('#customer-name').disabled = false;
+  document.querySelector('#mobile-number').disabled = false;
   document.querySelector('#customer-name').value = '';
   document.querySelector('#mobile-number').value = '';
   document.querySelector('#product-selector').value = 'select-default';
-  document.querySelector('#product-list').innerHTML = '';
-  document.querySelector('#total-value').innerHTML = '';
 }
-function formatProducts(products) {
-  return products
-    .map(product => `${product.name} (${product.quantity})`)
-    .join(', ');
+
+function resetFormFields() {
+  document.querySelector('#customer-name').value = '';
+  document.querySelector('#mobile-number').value = '';
+  enableFormFields();
 }
-function generateRandomSixDigitNumber() {
-  return Math.floor(Math.random() * 1000000)
-    .toString()
-    .padStart(6, '0');
-}
+
 document.addEventListener('DOMContentLoaded', () => {
-  let listOfProducts = [];
   createProductSelector();
-  document.querySelector('#add-product').addEventListener('click', () => {
-    listOfProducts = addProduct(listOfProducts);
+
+  document.querySelector('#add-product').addEventListener('click', event => {
+    event.preventDefault();
+    const customerName = document.querySelector('#customer-name').value.trim();
+    const mobileNumber = document.querySelector('#mobile-number').value.trim();
+    const selectedId = Number(
+      document.querySelector('#product-selector').value
+    );
+
+    if (!customerName || !mobileNumber || selectedId === 'select-default') {
+      showMessage('Please fill in all details and select a product.', 'error');
+      return;
+    }
+
+    addToCart(selectedId);
   });
-  document.querySelector('#place-order').addEventListener('click', () => {
-    addOrder(listOfProducts);
-    listOfProducts = [];
-    console.log(listOfProducts);
+
+  document.querySelector('#cart-items').addEventListener('click', event => {
+    if (event.target.classList.contains('quantity-control')) {
+      const productId = Number(event.target.dataset.id);
+      const action = event.target.dataset.action;
+      modifyQuantity(productId, action);
+    }
+
+    if (event.target.classList.contains('remove-product')) {
+      const productId = Number(event.target.dataset.id);
+      removeProduct(productId);
+    }
   });
+
+  document.querySelector('#place-order').addEventListener('click', placeOrder);
+  document.querySelector('#view-orders').addEventListener('click', viewOrders);
+
+  document
+    .querySelector('#cancel-order')
+    .addEventListener('click', cancelOrder);
 });

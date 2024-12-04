@@ -21,10 +21,10 @@ h1 {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.container{
+.container {
   padding: 0 20px;
-
-}.searchSection {
+}
+.searchSection {
   display: flex;
   align-items: center;
 }
@@ -117,7 +117,7 @@ button:hover {
 }
 
 #productList .table-header {
-  background-color: #5d93b8;
+  background-color: #ff2d70;
   font-weight: bold;
 }
 
@@ -127,7 +127,7 @@ button:hover {
 }
 
 #productList .table-row:hover {
-  background-color: #c4e3f865;
+  background-color: #ff98b844;
 }
 
 #productList .table-cell {

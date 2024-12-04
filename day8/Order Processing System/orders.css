@@ -1,0 +1,96 @@
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.card {
+  background-color: #f4f4f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.card span {
+  color: #555;
+}
+
+/* Style for the modal tile */
+.tile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 60%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+}
+.tile-content p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.tile.hidden {
+  display: none;
+}
+
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.tile-header h3 {
+  margin: 0;
+}
+
+.tile-header button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.tile-header button:hover {
+  color: #000;
+}
+
+.tile-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.btn-delete:hover {
+  background-color: darkred;
+}
