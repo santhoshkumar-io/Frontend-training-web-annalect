@@ -150,6 +150,18 @@ button:hover {
   color: #333;
 }
 .scroll-table {
-  height: 400px;
+  height: 385px;
   overflow-y: auto;
+}
+.footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 12px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }

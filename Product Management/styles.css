@@ -10,7 +10,7 @@ body {
 .container {
   width: 80%;
   max-width: 1200px;
-  margin: 30px auto;
+  margin: auto;
   padding: 20px;
 }
 
@@ -51,8 +51,7 @@ label {
   color: #444;
 }
 
-input[type='text'],
-input[type='number'] {
+input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -119,7 +118,7 @@ tr:hover {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin-top: 30px;
+  margin: 0 0 30px;
   flex-direction: row;
 }
 
@@ -168,12 +167,12 @@ tr:hover {
   padding: 8px 14px;
 }
 .discount-input {
-  width: 200px; 
+  width: 200px;
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .warning-message {
@@ -196,10 +195,6 @@ tr:hover {
   border: 1px solid #c3e6cb;
 }
 
-.view-wrap {
-  display: flex;
-  justify-content: center;
-}
 #discount {
   width: 150px;
 }
@@ -208,3 +203,17 @@ tr:hover {
   height: 350px;
   overflow-y: auto;
 }
+
+.footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 12px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+

@@ -5,8 +5,15 @@ body {
   padding: 0;
   color: #333;
 }
+h1 {
+  background-color: #ffffff6c;
+  backdrop-filter: blur(3px);
+  color: #222;
+  text-align: center;
+  margin: 0;
+  padding: 0.67rem 0;
+}
 
-h1,
 h3 {
   text-align: center;
   color: #333;
@@ -31,12 +38,17 @@ button {
 }
 
 button {
-  background-color: #ff6600;
-  color: #fff;
+  background-color: #fff;
+  color: #222;
   cursor: pointer;
   font-weight: bold;
+  border: 1px solid #000000;
 }
-
+#view-orders,
+#place-order {
+  background-color: black;
+  color: #fff;
+}
 .container {
   max-width: 900px;
   margin: 30px auto;
@@ -61,7 +73,7 @@ button {
 }
 
 .cart-table-wrapper {
-  min-height: 250px;
+  height: 250px;
   min-width: 350px;
   overflow-y: auto;
   border: 1px solid #ddd;
@@ -82,7 +94,9 @@ button {
 }
 
 .cart-table th {
-  background-color: #ff6600;
+  position: sticky;
+  top: 0;
+  background-color: #ff2d70;
   color: #fff;
 }
 .cart-table h5 {
@@ -120,15 +134,15 @@ button {
   padding: 0 8px;
 
   background-color: #fff;
-  color: #ff6600;
-  border: 1px solid #ff6600;
+  color: #ff2d70;
+  border: 1px solid #ff2d70;
   border-radius: 100%;
   cursor: pointer;
 }
 .quantity-wrap button:hover {
   color: #fff;
-  background-color: #ff6600;
-  border: 1px solid #ff6600;
+  background-color: #ff2d70;
+  border: 1px solid #ff2d70;
 }
 .quantity-wrap span {
   display: flex;
@@ -154,7 +168,7 @@ button {
 }
 .modal {
   position: fixed;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
@@ -173,8 +187,8 @@ button {
 }
 .message-container {
   position: fixed;
-  top: 20px;
-  left: 50%;
+  top: 45%;
+  left: 68%;
   transform: translateX(-50%);
   padding: 10px 20px;
   background-color: #f8d7da;
@@ -186,7 +200,13 @@ button {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+.hidden {
+  display: none;
+}
 .message-container.success {
   background-color: #d4edda;
   color: #155724;
@@ -198,4 +218,16 @@ button {
 
 .message-container.show {
   opacity: 1;
+}
+.footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
 }

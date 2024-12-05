@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const orders = JSON.parse(localStorage.getItem('orders')) || [];
-
   if (orders.length === 0) {
     document.querySelector('#orders-container').innerHTML =
       '<p>No orders available!</p>';
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderOrders(orders);
   }
 });
-
 function renderOrders(orders) {
   const ordersContainer = document.querySelector('#orders-container');
   ordersContainer.innerHTML = ''; // Clear any previous content
@@ -19,7 +17,6 @@ function renderOrders(orders) {
     const card = document.createElement('div');
     card.className = 'card';
     card.dataset.orderId = order.orderId;
-
     card.innerHTML = `
             <div class='order-head'>
             <div class='order-left'>
@@ -35,45 +32,48 @@ function renderOrders(orders) {
                     <h6>SHIP TO</h6>
                     <h5 id='name'>${order.customerName}</h5>
                 </div>
+                <div class='order-field-wrap'>
+                    <h6>CONTACT</h6>
+                    <h5>${order.mobileNumber}</h5>
+                </div>
+
             </div>
             <div class='order-right'>
                 <div class='order-id'>ORDER # ${order.orderId}</div>
                 <p>Status: <span class='${order.status}'>${
       order.status
     }</span></p>
-
             </div>
             </div>
-    
             <div class='order-details'>
-                <p><strong>Mobile Number:</strong> ${order.mobileNumber}</p>
-                <p><strong>Total Price:</strong> ₹${order.totalPrice}</p>
-                <h4>Products:</h4>
-                <ul>
+                <ul class='products-list'>
                     ${order.items
                       .map(
                         item =>
-                          `<li>${item.name} - Qty: ${item.quantity} - ₹${(
+                          `<li><span>${item.name}</span><span>${
+                            item.price
+                          } </span><span>X ${item.quantity} </span><span>₹${(
                             item.price * item.quantity
-                          ).toFixed(2)}</li>`
+                          ).toFixed(2)}</span></li>`
                       )
                       .join('')}
                 </ul>
-                <button class="btn-delete" onclick="deleteOrder('${
-                  order.orderId
-                }')">Delete Order</button>
+                    <p><strong>Total Price:</strong><span>₹${order.total.toFixed(
+                      2
+                    )}</span></p>
+
+              <div class='delete-btn-wrap'><button class="btn-delete" onclick="deleteOrder('${
+                order.orderId
+              }')">Delete Order</button></div>
             </div>
         `;
-
     card.addEventListener('click', () => toggleOrderDetails(card));
     ordersContainer.appendChild(card);
   });
 }
-
 function toggleOrderDetails(card) {
   card.classList.toggle('expanded');
 }
-
 function deleteOrder(orderId) {
   let orders = JSON.parse(localStorage.getItem('orders')) || [];
   orders = orders.filter(order => order.orderId !== orderId);

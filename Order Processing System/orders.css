@@ -6,13 +6,21 @@ body {
   color: #333;
 }
 
-h1,
+h1 {
+  text-align: center;
+  background-color: #ffffff6c;
+  backdrop-filter: blur(3px);
+  margin: 0;
+  padding: 0.67rem;
+  position: sticky;
+  top: 0;
+  z-index: 100000000;
+}
 h2 {
   text-align: center;
   color: #222;
   margin-bottom: 20px;
 }
-
 .container {
   max-width: 800px;
   margin: auto;
@@ -42,9 +50,9 @@ h2 {
 }
 
 .card .order-left {
-  width: 350px;
+  width: 500px;
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 2fr 1fr 2fr 2fr;
 }
 
 .card .order-right {
@@ -64,7 +72,6 @@ h2 {
 .order-field-wrap h5 {
   color: #666666;
   margin: 10px 0;
-  height: 25px;
 }
 .order-field-wrap h6 {
   margin: 10px 0;
@@ -81,7 +88,6 @@ h2 {
 }
 
 #name {
-  font-size: 1.02em;
   margin: 6px 0;
   color: rgb(20, 82, 124);
 }
@@ -110,7 +116,47 @@ h2 {
   cursor: pointer;
   margin-top: 10px;
 }
-
+.delete-btn-wrap {
+  display: flex;
+  justify-content: center;
+}
 .card .btn-delete:hover {
   background-color: darkred;
+}
+.products-list {
+  list-style-type: none;
+}
+
+.products-list li {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+.order-details p {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin: auto 27px;
+}
+.order-details p span {
+  font-weight: 700;
+}
+.footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 12px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main {
+  flex: 1;
 }

@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isUpdating = false;
   let updatingProductId = null;
+  renderProductsTable();
 
   function showError(message) {
     warningMessage.textContent = message;
@@ -157,10 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showSuccess('Product updated successfully!');
   });
 
-  viewProductsBtn.addEventListener('click', () => {
-    productsSection.style.display = 'block';
-    renderProductsTable();
-  });
 
   applyDiscountBtn.addEventListener('click', () => {
     const discount = parseFloat(discountInput.value);
